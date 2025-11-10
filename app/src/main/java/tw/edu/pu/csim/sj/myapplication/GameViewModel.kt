@@ -8,8 +8,6 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 
-
-
 class GameViewModel: ViewModel() {
     var screenWidthPx by mutableStateOf(0f)
         private set
@@ -18,6 +16,11 @@ class GameViewModel: ViewModel() {
     var gameRunning by mutableStateOf(false)
     var circleX by mutableStateOf(0f)
     var circleY by mutableStateOf(0f)
+
+    // 設定貯存分數之變數
+    var score by mutableStateOf(0)
+        private set // 設為 private set 以便只能在 ViewModel 內修改
+
     // 設定螢幕寬度與高度
     fun SetGameSize(w: Float, h: Float) {
         screenWidthPx = w
@@ -34,6 +37,8 @@ class GameViewModel: ViewModel() {
                 circleX += 10
                 if (circleX >= screenWidthPx - 100) {
                     circleX = 100f
+                    // 範例：每次圓形重置時增加分數
+                    score+=1
                 }
             }
         }
@@ -41,5 +46,10 @@ class GameViewModel: ViewModel() {
     fun MoveCircle(x: Float, y: Float) {
         circleX += x
         circleY += y
+    }
+
+    // 可以添加一個方法來重設分數
+    fun ResetScore() {
+        score = 0
     }
 }
