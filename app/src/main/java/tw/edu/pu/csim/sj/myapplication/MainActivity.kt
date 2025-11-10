@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import androidx.activity.viewModels
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
@@ -51,12 +52,15 @@ class MainActivity : ComponentActivity() {
         val bounds = currentWindowMetrics.bounds
 
         val screenWidthPx = bounds.width().toFloat()
-
         val screenHeightPx = bounds.height().toFloat()
+        // 實例化 ViewModel
+
+        val gameViewModel: GameViewModel by viewModels()
+        gameViewModel.SetGameSize(screenWidthPx,screenHeightPx)
+
         setContent {
             RaceTheme {
-                GameScreen(message = "橫式螢幕，隱藏狀態列,螢幕寬度與高度" +
-                "$screenWidthPx * $screenHeightPx")
+                GameScreen(message = "橫式螢幕，隱藏狀態列.",gameViewModel)
             }
         }
     }
