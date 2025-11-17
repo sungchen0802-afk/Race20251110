@@ -9,7 +9,12 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Button
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
@@ -89,9 +94,12 @@ fun GameScreen(message: String, gameViewModel: GameViewModel) {
                 gameViewModel.gameRunning = true
                 gameViewModel.ResetScore() // 可選：在開始新遊戲時重設分數
                 gameViewModel.StartGame()
-            }){
+            }
+            )
+            {
                 Text("遊戲開始")
             }
+
         }
     }
 }

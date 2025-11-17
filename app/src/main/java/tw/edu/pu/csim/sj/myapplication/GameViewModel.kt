@@ -25,6 +25,9 @@ class GameViewModel: ViewModel() {
     fun SetGameSize(w: Float, h: Float) {
         screenWidthPx = w
         screenHeightPx = h
+        for (i in 0..2){
+            horses.add(Horse(n=i))
+        }
     }
 
 //    val horse = Horse()
@@ -42,15 +45,15 @@ class GameViewModel: ViewModel() {
                     circleX = 100f
                     // 範例：每次圓形重置時增加分數
                     score+=1
-                    for(i in 0..2){
-                        horses[i].HorseRun()
-                        if (horses[i].horseX >= screenWidthPx - 200){
-                            horses[i].horseX = 0
-                        }
-                    }
 
                 }
+            for(i in 0..2){
+            horses[i].HorseRun()
+            if (horses[i].horseX >= screenWidthPx - 200) {
+                horses[i].horseX = 0
             }
+            }
+        }
         }
     }
     fun MoveCircle(x: Float, y: Float) {
