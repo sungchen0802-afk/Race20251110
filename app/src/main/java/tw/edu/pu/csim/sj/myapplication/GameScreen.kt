@@ -24,7 +24,15 @@ import androidx.compose.ui.unit.sp // 導入用於設置字體大小的 unit
 @Composable
 fun GameScreen(message: String, gameViewModel: GameViewModel) {
 
-    val imageBitmap = ImageBitmap.imageResource(R.drawable.horse0)
+//載入圖片
+    //val imageBitmap = ImageBitmap.imageResource(R.drawable.horse0)
+    val imageBitmaps = listOf(
+        ImageBitmap.imageResource(R.drawable.horse0),
+        ImageBitmap.imageResource(R.drawable.horse1),
+        ImageBitmap.imageResource(R.drawable.horse2),
+        ImageBitmap.imageResource(R.drawable.horse3)
+    )
+
 
     Box(modifier = Modifier
         .fillMaxSize()
@@ -44,11 +52,16 @@ fun GameScreen(message: String, gameViewModel: GameViewModel) {
                 radius = 100f,
                 center = Offset(gameViewModel.circleX, gameViewModel.circleY)
             )
-            drawImage(
-                image = imageBitmap,
-                dstOffset = IntOffset(0, 100),
-                dstSize = IntSize(200, 200)
-            )
+            for(i in 0..2){
+                drawImage(
+                    image = imageBitmaps[gameViewModel.horses[i].numberNo],
+                    dstOffset = IntOffset(
+                        gameViewModel.horses[i].horseX,
+                        gameViewModel.horses[i].horseY),
+                    dstSize = IntSize(200, 200)
+                )
+            }
+
 
         }
 

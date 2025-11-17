@@ -27,6 +27,9 @@ class GameViewModel: ViewModel() {
         screenHeightPx = h
     }
 
+//    val horse = Horse()
+
+    val horses = mutableListOf<Horse>()
     fun StartGame() {
         //回到初使位置
         circleX = 100f
@@ -39,6 +42,13 @@ class GameViewModel: ViewModel() {
                     circleX = 100f
                     // 範例：每次圓形重置時增加分數
                     score+=1
+                    for(i in 0..2){
+                        horses[i].HorseRun()
+                        if (horses[i].horseX >= screenWidthPx - 200){
+                            horses[i].horseX = 0
+                        }
+                    }
+
                 }
             }
         }
