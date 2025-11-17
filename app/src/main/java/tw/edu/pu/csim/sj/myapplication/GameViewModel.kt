@@ -37,6 +37,9 @@ class GameViewModel: ViewModel() {
         //回到初使位置
         circleX = 100f
         circleY = screenHeightPx - 100f
+
+
+
         viewModelScope.launch {
             while (gameRunning) { // 每0.1秒循環
                 delay(100)
@@ -50,7 +53,8 @@ class GameViewModel: ViewModel() {
             for(i in 0..2){
             horses[i].HorseRun()
             if (horses[i].horseX >= screenWidthPx - 200) {
-                horses[i].horseX = 0
+                for(i in 0..2){
+                horses[i].horseX = 0}
             }
             }
         }
